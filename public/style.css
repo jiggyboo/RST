@@ -1,0 +1,483 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    font-family: karla, sans-serif;
+}
+
+body {
+    background: linear-gradient(110deg, #081116 60%, #FD971F 60%);
+    transition: all .4s ease-in-out;
+}
+
+.app {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.nav {
+    background-color: #0f2330;
+    height: 60px;
+    width: 100%;
+    padding: 0 15%;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-left {
+    margin-left: 10px;
+}
+
+.nav-right {
+    margin-right: 10px;
+}
+
+.nlr {
+    font-size: 1.4rem;
+    margin-left: 0px!important;
+}
+
+.nav-link {
+    margin-left: 30px;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    transition: .2s;
+    color: rgb(160, 160, 160);
+}
+
+.main {
+    height: 130vh;
+}
+
+.charts {
+    padding: 0px 15% 30px 15%;
+    width: 100%;
+    height: calc(100vh - 120px);
+    display: grid;
+    grid-template: 
+        [row1-start] "main main main box1" 1fr [row1-end]
+        [row2-start] "main main main box2" 1fr [row2-end]
+        [row3-start] "main main main box3" 1fr [row3-end]
+        [row4-start] "box4 box5 box6 mainSmall" 1fr [row4-end]
+        / 1fr 1fr 1fr 1fr;
+    gap: 30px 30px;
+}
+
+.chart--box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.chart--box--enlarged {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 4;
+    padding: 10% 15%;
+}
+
+.chart--buttons {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #50a9d956;
+    border-radius: 20px;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart--buttons--open {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: #50a9d988;
+    transition: .1s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.chart--buttons--more {
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    top: 10%;
+    right: 10%;
+}
+
+.chart--buttons--expand {
+    width: 25%;
+    margin-right: 5%;
+}
+
+.mainChart {
+    grid-area: main;
+    height: 100%;
+    width: 100%;
+}
+
+.box1 {
+    grid-area: box1;
+    height: 100%;
+    width: 100%;
+}
+
+.box2 {
+    grid-area: box2;
+    height: 100%;
+    width: 100%;
+}
+
+.box3 {
+    grid-area: box3;
+    height: 100%;
+    width: 100%;
+}
+
+.box4 {
+    grid-area: box4;
+    height: 100%;
+    width: 100%;
+}
+
+.box5 {
+    grid-area: box5;
+    height: 100%;
+    width: 100%;
+}
+
+.box6 {
+    grid-area: box6;
+    height: 100%;
+    width: 100%;
+}
+
+.mainSmall {
+    grid-area: mainSmall;
+    height: 100%;
+    width: 100%;
+}
+
+.mainSmall-setting {
+    grid-area: mainSmall;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #0f2330;
+    border: 2px solid #FF5959;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainSmall-selectbox {
+    width: 80%
+}
+
+.mainSmall-label {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.mainSmall-select1 {
+    width: 50%;
+    height: 40px;
+    font-size: 1rem;
+}
+
+.mainSmall-select2 {
+    width: 50%;
+    height: 40px;
+    font-size: 1rem;
+}
+
+svg {
+    border-radius: 10px;
+    border: 2px solid #FF5959;
+}
+
+.searchbar {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 15%;
+    color: #fff;
+}
+
+.searchbar-body {
+    width: 60%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3943639f;
+    border-radius: 10px;
+}
+
+.searchbar-input {
+    width: 70%;
+    height: 100%;
+    font-size: 17px;
+    color: #fff;
+    background-color: #39436300;
+    border: none;
+    padding: 0 10px;
+}
+
+.searchbar-button {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    border-radius: 10px;
+    background-color: #39436300;
+    border: none;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 0px 0px 5px 5px #39436300;
+    color: #fff;
+    cursor: pointer;
+}
+
+.searchbar-button:hover {
+    transition: .2s;
+    box-shadow: 0px 0px 2px 3px #21b1dd8c;
+}
+
+.description {
+    width: 100%;
+    height: 30vh;
+    padding: 15px 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.description-textblob {
+    color: #fff;
+}
+
+.description-title {
+    font-size: 26px;
+    font-weight: bold;
+    padding: 30px 0;
+}
+
+.description-body {
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color:#3943639f;
+    line-height: 1.7;
+}
+
+.form {
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    padding: 25vh 35vw;
+}
+
+.form-title {
+    font-size: 30px;
+    font-weight: bold;
+    padding: 30px 0;
+}
+
+.form-body {
+    width: 100%;
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #3943639f;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.form-description {
+    margin-bottom: 25px;
+}
+
+.form-input {
+    width: 70%;
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 15px;
+    border-radius: 4px;
+    border: none;
+}
+
+.form-button {
+    margin-top: 20px;
+    width: 70%;
+    height: 35px;
+    border-radius: 4px;
+    border: none;
+    background-color: #0f2330;
+    color: #fff;
+    font-size: 17px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    animation: buttonFlash 2s linear alternate infinite;
+}
+
+.form-button:hover {
+    transition: .2s;
+    background-color: #008deb;
+}
+
+.form-footer {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form-ft-button {
+    color: #fff;
+}
+
+.form-ft-button:hover {
+    color: rgb(202, 202, 202);
+    transition: .2s;
+}
+
+@keyframes buttonFlash {
+    from {box-shadow: 0px 0px 5px 5px #21B0DD4D;}
+    to {box-shadow: 0px 0px 4px 4px #071B2D40;}
+}
+
+.footer {
+    background-color: #0f233086;
+    height: 60px;
+    width: 100%;
+    padding: 0 15%;
+    color: #fff;
+    font-size: 1.2rem;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close {
+    display: none;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    .nav {
+        height: 40px;
+        padding: 0 10%;
+        justify-content: center;
+    }
+
+    .nlr {
+        font-size: 1.1rem;
+    }
+
+    .nav-right {
+        display: none;
+    }
+    .charts {
+        grid-template: 
+            [row1-start] "main main" 1fr [row1-end]
+            [row2-start] "main main" 1fr [row2-end]
+            [row3-start] "box1 box2" 1fr [row3-end]
+            [row4-start] "box3 box4" 1fr [row4-end]
+            [row5-start] "box5 box6" 1fr [row5-end]
+            / 1fr 1fr;
+        gap: 10px 10px;
+        padding: 0px 5% 10px 5%;
+    }
+    
+    .mainSmall-setting {
+        display: none;
+    }
+
+    .searchbar {
+        padding: 10px 5%;
+        height: 50px;
+    }
+
+    .searchbar-body {
+        width: 80%;
+    }
+
+    .description {
+        height: 30vh;
+        padding: 30px 5%;
+    }
+
+    .description-title {
+        font-size: 20px;
+        font-weight: bold;
+        padding: 30px 0;
+    }
+
+    .description-body {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .form {
+        padding: 20vh 3vh;
+    }
+
+    .form-body {
+        height: 35vh;
+    }
+
+    .form-input {
+        width: 85%;
+    }
+
+    .form-button {
+        width: 85%;
+    }
+
+    .form-footer {
+        font-size: 14px;
+    }
+
+    .footer {
+        padding: 10px 5%;
+        font-size: 10px;
+    }
+}
