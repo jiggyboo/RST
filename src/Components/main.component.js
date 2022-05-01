@@ -15,8 +15,24 @@ export default function Main(props) {
   return (
     <div className="main">
       <Searchbar />
-      {props.login && <Chart login={props.login} data={props.userData} personal={"pbox"} following={props.following} follow={props.follow} unfollow={props.unfollow}/>}
-      <Chart login={props.login} data={props.data} personal={"box"} following={props.following} follow={props.follow} unfollow={props.unfollow}/>
+      {props.login && 
+        <Chart 
+          login={props.login} 
+          stockData={props.stockData} 
+          data={props.userData} 
+          personal={"pbox"} 
+          following={props.following} 
+          follow={props.follow} 
+          unfollow={props.unfollow}/>}
+      {Object.keys(props.stockData).length === 0 ?
+        <div>Loading...</div> : 
+        <Chart 
+          login={props.login} 
+          stockData={props.stockData} 
+          personal={"box"} 
+          following={props.following} 
+          follow={props.follow} 
+          unfollow={props.unfollow}/>}
       <Description />
       <button onClick={printit}/>
       <button onClick={printData}/>

@@ -12,32 +12,23 @@ import Footer from "./Components/footer.component";
 function App() {
 
   const [login, setLogin] = React.useState(false);
-  const [content, setContent] = React.useState({});
   const [stockData, setStockData] = React.useState({});
   const [following, setFollowing] = React.useState([]);
   const [needMore, setNeedMore] = React.useState(false);
-
+  // const loadData = () => JSON.parse(JSON.stringify(lcnt));
+  // setStockData(loadData());
 
   // Load smaller JSON file.
   React.useEffect(() => {
+    const fetchLCNT = async () => {
+      await fetch('lcnt.json')
+        .then(response => response.json())
+        .then(data => setStockData(data))
+        .then(() => console.log('Loaded LCNT'))
+        .catch(err => console.log(err));
+    };
     console.log("Fetching Light Stock Data...");
-    fetch('lcnt.json')
-      .then(res => res.json())
-      .then(result =>{
-        setStockData(result);
-      });
-  }, []);
-
-  // Placeholder.
-  React.useEffect(() => {
-    console.log("CNT Setting");
-    fetch('content.json')
-      .then(res => res.json())
-      .then(result =>{
-        setContent(result);
-        console.log(result);
-        console.log(typeof result);
-      });
+    fetchLCNT();
   }, []);
 
   // Load larger JSON file when page number goes beyond 4.
@@ -98,7 +89,7 @@ function App() {
       <div className="app">
         <Nav login={login} logout={() => setLogin(false)} />
         <Routes>
-          <Route path="/rst" element={<Main data={content} login={login} follow={follow} unfollow={unfollow} following={following} stockData={stockData} />} />
+          <Route path="/rst" element={<Main login={login} follow={follow} unfollow={unfollow} following={following} stockData={stockData} />} />
           <Route path="/rst/login" element={<Login login={()=>setLogin(true)} setFollowing={setFollowing} />} />
           <Route path="/rst/register" element={<Register />} />
           <Route path="/rst/forgot" element={<Forgot />} />

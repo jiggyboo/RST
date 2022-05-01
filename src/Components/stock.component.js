@@ -3,23 +3,22 @@ import Buttons from "./buttons.component";
 
 export default function Stock (props){
     const [chart, setChart] = useState(null);
-    const [setting, setSetting] = useState(false);
     const [enlarge, setEnlarge] = useState(false);
 
     useEffect(() => {
-        if (props.google && !chart) {
+        if (props.google) {
             const list = [];
-            for (let i = 0; i < props.content.length; i++) {
-                list.push([props.content[i]['timestamp'], props.content[i]['sentiment'], props.content[i]['subjectivity']]);
+            for (let i = 0; i < props.stockData.length; i++) {
+                list.push([props.stockData[i].timestamp, props.stockData[i][props.select1], props.stockData[i][props.select2]]);
             }
             const data = new props.google.visualization.DataTable();
             data.addColumn('string', 'Date');
-            data.addColumn('number', 'Sentiment');
-            data.addColumn('number', 'Subjectivity');
+            data.addColumn('number', props.select1);
+            data.addColumn('number', props.select2);
             data.addRows(list);
 
             var options = {
-                'title': props.name,
+                'title': props.stockData[0]['fullName'],
                 'titleTextStyle': {
                     'fontSize': 14,
                     'color': '#FFFFFF',
@@ -30,29 +29,33 @@ export default function Stock (props){
                     'color': '#FFFFFF',
                     'bold': true
                 },
+                'series': {
+                    0: {targetAxisIndex: 0},
+                    1: {targetAxisIndex: 1}
+                },
                 'hAxis': {
                     'textStyle' : {
                         'color' : '#FFFFFF'
                     },
-                    'direction': "-1"
+                    'direction': "-1",
+                    'showTextEvery': "5mainSmall-"
                 },
                 'vAxis': {
+                    0: {
+                        title: props.select1
+                    },
+                    1: {
+                        title: props.select2
+                    },
                     'textStyle' : {
                         'color' : '#FFFFFF'
                     },
-                    'scaleType' : 'log',
-                    'viewWindow' : {
-                        'min' : -1,
-                        'max' : 1
-                    },
-                    'ticks' : [
-                        -1, -0.2, 0, 0.2, 1
-                    ]
+                    'scaleType' : 'linear'
                 },
                 'width': '100%',
                 'height': '100%',
                 'backgroundColor': '#0f2330',
-                'chartArea': {'width': '80%', 'height': '70%'},
+                'chartArea': {'width': '80%', 'height': '80%'},
                 'legend': {
                     'position': 'bottom'
                 }
@@ -63,10 +66,10 @@ export default function Stock (props){
 
             setChart(newChart);
         }
-    }, [props.google, chart]);
+    }, [props.google, props.page, props.select3, props.select1, props.select2]);
 
     return (
-        <div className={enlarge ?"chart--box--enlarged" :"chart--box"}>
+        <div className={enlarge ?"chart--box--enlarged" : props.id}>
             <div id={props.personal+props.id} className={!props.google ? 'd-none' : props.id} />
             <Buttons ticker={props.name} follow={props.follow} unfollow={props.unfollow} following={props.following} login={props.login} setEnlarge={setEnlarge} />
         </div>
